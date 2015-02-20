@@ -1,25 +1,54 @@
 #include <pthread.h>
+#include <semaphore.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <time.h>
 
-int run = 1;
+#define NUM_CHAIRS 3
 
 void * student(void *param);
 void * teacher(void *param);
 
+enum student_state {
+  PROGRAMMING,
+  WAITING,
+  BEING_HELPED
+};
+
+enum teacher_state {
+  HELPING,
+  SLEEPING
+};
+
+int run = 1;
+sem_t teacher_sem;
+sem_t student_sem;
+
 void * student(void *param) {
+  enum student_state state = PROGRAMMING;
   // case the param to an int;
   int student_number = *((int*)param);
   while(run) {
-    /*
-    * 1.) Program for a period of time
-    * 2.) Seek help from TA
-    *   a.) if TA is sleeping, wake the TA
-    *   b.) if the TA is helping another student, wait in a chair
-    *     i.) if there are no chairs, leave and go back to programming
-    */
-    
+    switch(student_state) {
+      case PROGRAMMING:
+        // 1.) Program for a period of time
+        // wait for 0 - 1000 ms, in increments of 100ms
+        nanosleep((rand() % 10) * 100000000);
+        state = WAITING;
+        break;
+      case WAITING:
+        // post to the teacher's sem, to alert that we want help
+        sem_post(&teacher_sem);
+        // wait for the teacher to give back the sem after finished helping
+        sem_wait(&student_sem);
+        state = PROGRAMMING;
+        break;
+      case BEING_HELPED:
+        state = PROGRAMMING;
+        break;
+    }
+
     // just as a test spew 
     printf("student %d says hi\n", student_number);
     sleep(1);
@@ -30,6 +59,9 @@ void * student(void *param) {
 void * teacher(void *param) {
   while(run) {
     // 1.) When no students waiting, nap
+    sem_wait(&teacher_sem);
+    printf("TA is helping a student\n");
+    sem_post(&student_sem);
     // 2.) When students waiting, help the student
     printf("TA says hi\n");
     sleep(1);
@@ -43,6 +75,13 @@ int main(int argc, char * argv[]) {
     exit(1);
   }
   int student_number = atoi(argv[1]);
+
+  // initialize the random number generator
+  srand(time(NULL));
+
+  // initialize the teacher signaling semaphor
+  sem_init(&teacher_sem, 0, 1);
+  sem_init(&student_sem, 0, num_students);
 
   // teacher thread and attributes
   pthread_t teacher_thread;
