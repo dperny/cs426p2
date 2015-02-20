@@ -1,0 +1,80 @@
+student 0 is programming
+student 1 is programming
+student 2 is programming
+student 0 needs help
+student 0 is waiting for help
+student 0 is receiving help
+student 0 is programming
+student 5 is programming
+student 6 is programming
+student 7 is programming
+student 4 is programming
+student 8 is programming
+student 9 is programming
+student 10 is programming
+student 11 is programming
+student 3 is programming
+student 2 needs help
+student 2 is waiting for help
+student 2 is receiving help
+student 0 needs help
+student 0 is waiting for help
+student 9 needs help
+student 6 needs help
+student 6 is waiting for help
+student 9 is waiting for help
+student 2 is programming
+student 0 is receiving help
+student 7 needs help
+student 7 is waiting for help
+student 4 needs help
+no chairs available for student 4, back to programming
+student 4 is programming
+student 0 is programming
+student 6 is receiving help
+student 5 needs help
+student 5 is waiting for help
+student 6 is programming
+student 9 is receiving help
+student 6 needs help
+student 6 is waiting for help
+student 9 is programming
+student 7 is receiving help
+student 7 is programming
+student 5 is receiving help
+student 5 is programming
+student 6 is receiving help
+student 10 needs help
+student 10 is waiting for help
+student 6 is programming
+student 10 is receiving help
+student 10 is programming
+student 1 needs help
+student 1 is waiting for help
+student 1 is receiving help
+student 1 is programming
+student 0 needs help
+student 0 is waiting for help
+student 0 is receiving help
+student 0 is programming
+student 8 needs help
+student 8 is waiting for help
+student 8 is receiving help
+student 8 is programming
+student 9 needs help
+student 9 is waiting for help
+student 9 is receiving help
+student 11 needs help
+student 11 is waiting for help
+student 9 is programming
+student 11 is receiving help
+student 3 needs help
+student 3 is waiting for help
+student 1 needs help
+student 1 is waiting for help
+student 11 is programming
+student 3 is receiving help
+student 11 needs help
+student 11 is waiting for help
+student 7 needs help
+student 7 is waiting for help
